@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: pink;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fireworks {
+            0% { transform: scale(0.5); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        h1 {
+            font-size: 4rem;
+            color: red;
+            text-shadow: 2px 2px 5px white;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        .btn {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s ease;
+        }
+        #yes {
+            background-color: red;
+            color: white;
+        }
+        #no {
+            background-color: white;
+            color: red;
+            border: 2px solid red;
+        }
+        .reasons {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: darkred;
+            font-weight: bold;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .message {
+            font-size: 2rem;
+            color: green;
+            font-weight: bold;
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .firework {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: gold;
+            border-radius: 50%;
+            animation: fireworks 1.5s ease-in-out;
+        }
+        .video-container {
+            width: 560px;
+            height: 315px;
+        }
+        .video-container video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+    
+<body>
+    <div class="video-container">
+        <video autoplay loop muted>
+            <source src="videoplayback.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <h1>Will You Be My Valentine? 💖</h1>
+    <div class="buttons">
+        <button id="yes" class="btn" onclick="showMessage()">Yes</button>
+        <button id="no" class="btn" onclick="makeYesBigger()">No</button>
+    </div>
+    <div class="reasons" id="reasons"></div>
+    <div class="message" id="message">Yay! Thank you so much! 💕</div>
+
+    <script>
+        let yesBtn = document.getElementById("yes");
+        let noBtn = document.getElementById("no");
+        let reasonsDiv = document.getElementById("reasons");
+        let messageDiv = document.getElementById("message");
+        let yesSize = 1.5;
+        let reasons = [
+            "because you're the kindest person I know!", "because you always make me smile!", "because you light up my world!",
+            "because you're incredibly thoughtful!", "because I love spending time with you!", "because you're simply amazing!",
+            "because your laughter is my favorite sound!", "because you inspire me every day!", "because you make life more beautiful!",
+            "because you're my sunshine on a rainy day!", "because you're my dream come true!",
+            "because you're my perfect match!", "because you're my happiness!", "because you're the best thing that ever happened to me!",
+            "because I can always count on you!", "because you make every moment special!", "because you are my safe space!",
+            "because you always support my dreams!", "because you make my heart race!"
+        ];
+        let reasonIndex = 0;
+
+        function makeYesBigger() {
+            yesSize += 0.5;
+            yesBtn.style.fontSize = yesSize + "rem";
+            yesBtn.style.padding = yesSize * 5 + "px";
+            
+            if (reasonIndex >= reasons.length) {
+                reasonIndex = 0;
+            }
+            
+            reasonsDiv.textContent = `I want you to be my Valentine ${reasons[reasonIndex]}`;
+            reasonIndex++;
+        }
+
+        function showMessage() {
+            messageDiv.style.display = "block";
+            messageDiv.style.opacity = "1";
+            noBtn.style.display = "none";
+        }
+    </script>
+</body>
+</html>
